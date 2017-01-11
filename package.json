@@ -1,0 +1,31 @@
+{
+  "name": "homebridge-motion-fifo",
+  "version": "1.0.0",
+  "description": "Motion detector fifo plugin for Homebridge",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/MrsDelish/homebridge-motion-fifo.git"
+  },
+  "keywords": [
+    "homebridge-plugin",
+    "fifo",
+    "motion"
+  ],
+  "author": "MrsDelish",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/MrsDelish/homebridge-motion-fifo/issues"
+  },
+  "engines": {
+    "node": ">=6.0.0",
+    "homebridge": ">=0.2.0"
+  },
+  "homepage": "https://github.com/MrsDelish/homebridge-motion-fifo#readme",
+  "dependencies": {
+    "fifo-js": "^2.1.0"
+  }
+}
