@@ -4,7 +4,7 @@
 
 ## Installation
 1.	Install Homebridge using `npm install -g homebridge`
-2.	Install this plugin `npm install -g homebridge-motion-fifo`
+2.	Install this plugin `npm install -g https://github.com/MrsDelish/homebridge-motion-fifo`
 3.	Update your configuration file - see below for an example
 4.	Install and configure [Motion](https://motion-project.github.io)
 
