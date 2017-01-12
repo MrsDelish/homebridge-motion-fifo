@@ -10,12 +10,14 @@
 5.	Install and configure [Motion](https://motion-project.github.io) (motion needs to be running)	
 6.	If you run motion and and homebridge as different users than your logged in one, see below.
 
-Add to your `~/.motion/motion.conf`:
+Add to your `~/.motion/motion.conf` or if running as service`/etc/motion/motion.conf` :
 
 ```
 on_picture_save printf '%f\t%n\t%v\t%i\t%J\t%K\t%L\t%N\t%D\n' > /tmp/motion-pipe
 target_dir /tmp
 ```
+`output_pictures first` sensor will trigger at first motion.
+`snapshot_interval 0` this can't be on since it will trigger our pipe.
 
 ## Configuration
 * `accessory`: "CameraMotion"
@@ -52,7 +54,7 @@ first go to home `cd` then
 add to the end of your file
 `@reboot /home/pi/homebridge-fixfifo.sh`
 
-content of my homebridge-fixfifo.sh (set to the user running homebridge)
+content of my homebridge-fixfifo.sh (set to the user running homebridge):
 
 ```
 #!/bin/bash
