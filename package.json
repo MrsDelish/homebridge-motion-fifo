@@ -1,6 +1,6 @@
 {
   "name": "homebridge-motion-fifo",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Motion detector fifo plugin for Homebridge",
   "main": "index.js",
   "scripts": {
