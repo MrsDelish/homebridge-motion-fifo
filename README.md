@@ -6,7 +6,9 @@
 1.	Install Homebridge using `npm install -g homebridge`
 2.	Install this plugin `npm install -g https://github.com/MrsDelish/homebridge-motion-fifo`
 3.	Update your configuration file - see below for an example
-4.	Install and configure [Motion](https://motion-project.github.io)
+4.	Make your fifo `cd /tmp` and `mkfifo motion-pipe` set rw for all `chmod 777 motion-pipe`
+5.	Install and configure [Motion](https://motion-project.github.io) (motion needs to be running)	
+6.	If you run motion and and homebridge as different users than your logged in one, see below.
 
 Add to your `~/.motion/motion.conf`:
 
@@ -25,15 +27,47 @@ target_dir /tmp
 Example configuration:
 
 ```
-    "Accessories": [
+    "accessories": [
         {
-    	"Accessory": "MotionFifo",
-		"name": "Motion Sensor",
-		"motion_pipe": "/tmp/motion-pipe",
-		"motion_timeout": 5000
+    	"accessory": "MotionFifo",
+	"name": "Motion Sensor",
+	"motion_pipe": "/tmp/motion-pipe",
+	"motion_timeout": 5000
         }
     ]
 ```
+Setup if we are running with different users on motion and homebridge:
+Be sure the user running motion has write access to your fifo, and the user running homebridge has read access. fifo pipe gets reset on each reboot, so it needs to be fixed after boot.
+
+to check who owns and who has permission:
+`cd /tmp`
+`ls -la`
+
+For testing we can use motion webadmin, usually on port 8082 (from local machine http://localhost:8082/0/action/snapshot) to make a snapshot and check if motion is triggered.
+
+I use crontab to run a script at boot to fix mine (adding script to /etc/rc.local also works)
+first go to home `cd` then
+`crontab -e`
+
+add to the end of your file
+`@reboot /home/pi/homebridge-fixfifo.sh`
+
+content of my homebridge-fixfifo.sh (set to the user running homebridge, I run with user pi)
+`
+#!/bin/bash
+mkfifo /tmp/motion-pipe
+chmod 777 /tmp/motion-pipe
+chown pi:motion /tmp/motion-pipe
+`
+(to make this python script nano homebridge-fixfifo.sh paste, cmd + x , y , enter ) 
+it is included with this install `cp /usr/local/lib/node_modules/homebridge-motion-fifo/homebridge-fixfifo.sh ~/`
+
+test the commands so they work without sudo, we probably want to be in the same groups, as the users you choose to chown to.
+how to add to group `sudo adduser <username> <groupname> `
+
+remember to set executable
+`chmod +x homebridge-fixfifo.sh`
+
 
 Creates a MotionSensor service.
 
