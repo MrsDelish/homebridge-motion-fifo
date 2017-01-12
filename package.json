@@ -3,6 +3,7 @@
   "version": "1.0.2",
   "description": "Motion detector fifo plugin for Homebridge",
   "main": "index.js",
+  "readme": "README.md",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
