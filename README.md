@@ -29,10 +29,10 @@ Example configuration:
 ```
     "accessories": [
         {
-    	"accessory": "MotionFifo",
-	"name": "Motion Sensor",
-	"motion_pipe": "/tmp/motion-pipe",
-	"motion_timeout": 5000
+         "accessory": "MotionFifo",
+         "name": "Motion Sensor",
+         "motion_pipe": "/tmp/motion-pipe",
+         "motion_timeout": 5000
         }
     ]
 ```
