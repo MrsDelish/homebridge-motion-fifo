@@ -52,13 +52,13 @@ first go to home `cd` then
 add to the end of your file
 `@reboot /home/pi/homebridge-fixfifo.sh`
 
-content of my homebridge-fixfifo.sh (set to the user running homebridge, I run with user pi)
+content of my homebridge-fixfifo.sh (set to the user running homebridge)
 
 ```
 #!/bin/bash
 mkfifo /tmp/motion-pipe
 chmod 777 /tmp/motion-pipe
-chown pi:motion /tmp/motion-pipe
+chown homebridge:motion /tmp/motion-pipe
 ```
 (to make this python script nano homebridge-fixfifo.sh paste, cmd + x , y , enter ) 
 it is included with this install `cp /usr/local/lib/node_modules/homebridge-motion-fifo/homebridge-fixfifo.sh ~/`
