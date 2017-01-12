@@ -6,11 +6,11 @@
 1.	Install Homebridge using `npm install -g homebridge`
 2.	Install this plugin `npm install -g https://github.com/MrsDelish/homebridge-motion-fifo`
 3.	Update your configuration file - see below for an example
-4.	Make your fifo `cd /tmp` and `mkfifo motion-pipe` set rw for all `chmod 777 motion-pipe`
+4.	Make fifo `cd /tmp` and `mkfifo motion-pipe` set rw for all `chmod 777 motion-pipe`
 5.	Install and configure [Motion](https://motion-project.github.io) (motion needs to be running)	
-6.	If you run motion and and homebridge as different users than your logged in one, see below.
+6.	If we run motion and and homebridge as different users than what we logged in with, see below.
 
-Add to your `~/.motion/motion.conf` or if running as service`/etc/motion/motion.conf` :
+Add to `~/.motion/motion.conf` or if running as service`/etc/motion/motion.conf` :
 
 ```
 on_picture_save printf '%f\t%n\t%v\t%i\t%J\t%K\t%L\t%N\t%D\n' > /tmp/motion-pipe
